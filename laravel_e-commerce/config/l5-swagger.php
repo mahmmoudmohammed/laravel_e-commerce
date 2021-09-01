@@ -139,6 +139,12 @@ return [
         */
         'securityDefinitions' => [
             'securitySchemes' => [
+                'sanctum' => [
+                    'type' => 'http',
+                    'description' => 'Laravel Sanctum token authentication',
+                    'scheme' => 'bearer',
+                    'bearerFormat' => 'JWT'
+                ],
                 /*
                  * Examples of Security schemes
                 */
