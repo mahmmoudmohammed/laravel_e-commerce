@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
@@ -76,7 +77,7 @@ class ProductController extends Controller
      *
      */
 
-    public function search($request)
+    public function search(Request $request)
     {
         try {
             $products = Product::where('name', 'Like', '%' . $request->term . '%')
@@ -132,6 +133,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $user = auth('sanctum')->user();
+        $this->authorize( 'store', Product::class);
+//        $this->authorize($user,'store');
         try {
             $data = $request->all();
             $product = Product::create($data);
@@ -234,9 +238,10 @@ class ProductController extends Controller
 
     public function update(Product $product, ProductRequest $request)
     {
+        $user = auth('sanctum')->user();
+        $this->authorize($user,'update');
         try {
             $product->update($request->all());
-            $product->specs()->Sync($request->specs);
             return $this->ApiResponse(Response::HTTP_ACCEPTED, 'Product updated', null, $product);
         } catch (Exception $e) {
             return $this->ApiResponse(500, 'Update process can not be complete, try later');
@@ -277,6 +282,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $user = auth('sanctum')->user();
+        $this->authorize($user,'delete');
         if ($product->trashed()) {
             return $this->ApiResponse(Response::HTTP_NOT_FOUND, 'Product already deleted');
         }

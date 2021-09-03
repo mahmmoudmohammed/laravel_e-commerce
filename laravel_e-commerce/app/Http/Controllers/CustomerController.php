@@ -88,7 +88,7 @@ class CustomerController extends Controller
     public function store(CustomerRequest $request)
     {
         $user = auth('sanctum')->user();
-        $this->authorizeForUser($user,'store',$user);
+        $this->authorize( 'store', Customer::class);
         $data = $request->all();
         try{
             $customer = Customer::create([
@@ -268,7 +268,7 @@ class CustomerController extends Controller
 
     public function notFound()
     {
-        return $this->ApiResponse(Response::HTTP_NOT_FOUND, null, 'THIS customer NOT EXIST.');
+        return $this->ApiResponse(Response::HTTP_NOT_FOUND, null, 'THIS CUSTOMER NOT EXIST.');
 
     }
 
