@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function () {
-    return true;
+Route::get('/php', function () {
+    return phpinfo();
 });
 
 Auth::routes();
@@ -29,14 +29,11 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('auth_redirect/{driver}', [SocialController::class, 'redirect']);
-//Route::get('auth_callback', [SocialController::class, 'callback']);
+Route::get('auth_redirect/{driver}', [SocialController::class,'redirect'])->name('facebook.login');
+Route::get('/auth/facebook/callback', [SocialController::class,'callback']);
 
-Route::get('/auth/facebook/redirect', [SocialController::class,'redirectToFacebook'])->name('facebook.login');
-Route::get('/auth/facebook/callback', [SocialController::class,'handleFacebookCallback']);
+Route::get('auth_redirect/{driver}', [SocialController::class,'redirect'])->name('google.login');
+Route::get('/auth/google/callback', [SocialController::class,'callback']);
 
-Route::get('/auth/google/redirect', [SocialController::class,'redirectToGoogle'])->name('google.login');
-Route::get('/auth/google/callback', [SocialController::class,'handleGoogleCallback']);
-
-Route::get('/auth/github/redirect', [SocialController::class,'redirectToGithub'])->name('github.login');
-Route::get('/auth/github/callback', [SocialController::class,'handleGithubCallback']);
+Route::get('auth_redirect/{driver}', [SocialController::class,'redirect'])->name('github.login');
+Route::get('/auth/github/callback', [SocialController::class,'callback']);

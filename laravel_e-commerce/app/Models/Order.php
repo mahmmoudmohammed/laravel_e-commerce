@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  *
@@ -20,7 +21,7 @@ use App\Models\Product;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $fillable = [ "status","shipping","total"];
     protected $hidden = [ 'id', 'created_at', 'updated_at', 'deleted_at'];
 

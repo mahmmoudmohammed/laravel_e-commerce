@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
  *
  * @OA\Schema(
  * required={"name","email","password"},
- * @OA\Xml(name="Customers"),
+ * @OA\Xml(name="Customer"),
  *     @OA\Property(property="id", type="integer", readOnly="true", example="1"),
  *     @OA\Property(property="email", type="string", readOnly="true", format="email", description="Admin unique email address", example="Admin@gmail.com"),
  *     @OA\Property(property="name", type="string", readOnly="true", example="Admin"),

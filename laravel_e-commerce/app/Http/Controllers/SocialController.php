@@ -10,26 +10,25 @@ use Exception;
 
 class SocialController extends Controller
 {
-
-    public function redirectToFacebook () {
-        return Socialite::driver('facebook')->redirect();
-    }
-    function handleFacebookCallback () {
-        $user = Socialite::driver('facebook')->user();
-//        return $user->token;
-    }
-
-    public function redirectToGoogle() {
-        return Socialite::driver('google')->redirect();
-    }
-
-    public function handleGoogleCallback()
+    public function redirect($driver)
     {
-        $driver = 'google';
+        session(['driver' => $driver]);
+        return Socialite::driver($driver)->with(['driver' => $driver])->redirect();
+    }
+
+    public function callback()
+    {
+        $driver = session()->get('driver');
+//        dd($driver);
         try {
             $socialUser = Socialite::driver($driver)->user();
             $user = Customer::where('Oauth_token', $socialUser->id)->first();
+            if ($user) {
+                Auth::login($user);
+                return redirect('/home');
+            }
 
+            $user = Customer::where('email', $socialUser->email)->first();
             if ($user) {
                 Auth::login($user);
                 return redirect('/home');
@@ -50,45 +49,6 @@ class SocialController extends Controller
         }
     }
 
-     public function redirectToGithub() {
-        return Socialite::driver('github')->redirect();
-    }
 
-    public function handleGithubCallback()
-    {
-        $driver = 'github';
-        try {
-            $socialUser = Socialite::driver($driver)->user();
-            $user = Customer::where('Oauth_token', $socialUser->id)->first();
-            if ($user) {
-                Auth::login($user);
-                return redirect('/home');
-            }
 
-            $user = Customer::where('email', $socialUser->email)->first();
-            if ($user) {
-                Auth::login($user);
-                return redirect('/home');
-            }else {
-                $createUser = Customer::create([
-                    'name' => $socialUser->name,
-                    'email' => $socialUser->email,
-                    'Oauth_token' => $socialUser->id,
-                    'password' => Hash::make('123456789'),
-                ]);
-
-                Auth::login($createUser);
-                return redirect('/');
-            }
-
-        } catch (Exception $exception) {
-            dd($exception->getMessage());
-        }
-    }
-
-    public function redirect($driver)
-    {
-        session(['driver' => $driver]);
-        return Socialite::driver($driver)->with(['driver' => $driver])->redirect();
-    }
 }
