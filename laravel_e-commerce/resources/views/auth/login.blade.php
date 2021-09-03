@@ -68,12 +68,12 @@
 
                             <div class="form-group row">
                                 <div class = "col-md-6 offset-md-3">
-                                    <a href="{{ route('google.login') }}" class ="btn btn-danger btn-block">Login with google</a>
-                                    <a href="{{ route('facebook.login') }}" class ="btn btn-primary btn-block">Login with facebook</a>
-{{--                                    <a href="{{ url('auth_redirect',["google"]) }}" class ="btn btn-danger btn-block">Login with google</a>--}}
-{{--                                    <a href="{{ url('auth_redirect',["facebook"]) }}" class ="btn btn-primary btn-block">Login with facebook</a>--}}
-{{--                                    <a href="{{ url('auth_redirect',["github"]) }}" class ="btn btn-dark btn-block">Login with github</a>--}}
-                                    <a href="{{ route('github.login') }}" class ="btn btn-dark btn-block">Login with github</a>
+{{--                                    <a href="{{ route('google.login') }}" class ="btn btn-danger btn-block">Login with google</a>--}}
+{{--                                    <a href="{{ route('facebook.login') }}" class ="btn btn-primary btn-block">Login with facebook</a>--}}
+                                    <a href="{{ url('auth_redirect',["google"]) }}" class ="btn btn-danger btn-block">Login with google</a>
+                                    <a href="{{ url('auth_redirect',["facebook"]) }}" class ="btn btn-primary btn-block">Login with facebook</a>
+                                    <a href="{{ url('auth_redirect',["github"]) }}" class ="btn btn-dark btn-block">Login with github</a>
+{{--                                    <a href="{{ route('github.login') }}" class ="btn btn-dark btn-block">Login with github</a>--}}
                                 </div>
 
                             </div>

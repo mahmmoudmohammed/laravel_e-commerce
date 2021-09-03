@@ -37,11 +37,11 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'sanctum',
+            'driver' => 'session',
             'provider' => 'users',
         ],
         'customer' => [
-            'driver' => 'sanctum',
+            'driver' => 'session',
             'provider' => 'customers',
         ],
 
