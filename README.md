@@ -12,12 +12,12 @@
 
 -  CRUD operations of Admincontroller using  **OpenAPI Documentation using swagger framework**.
 
--  Implementing request validation using Laravel Request Class magic where you can  group related request handling logic into a single class Instead of defining 
+-  Implementing request validation using **Laravel Request Class** where you can  group related request handling logic into a single class Instead of defining 
    all of your request-handling logic as closures in your route files.
 
--  Applying a layer of Authorization using Laravel policies which provides a simple way to authorize user actions against a given resource.
+-  Applying a layer of Authorization using **Laravel policies** which provides a simple way to authorize user actions against a given resource.
 
--  Implementing of multi-guard feature using Login Controller and laravel built-in Guards which defines how users are authenticated for each request.
+-  Implementing of **multi-guard feature** using Login Controller and laravel built-in Guards which defines how users are authenticated for each request.
 
 ## Project Component
 
