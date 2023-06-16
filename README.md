@@ -22,10 +22,10 @@
 ## Project Component
 
 ### 1. Models:
-   - ** Customer**
-   - ** User**
-   - ** Product**
-   - ** Order**
+   -  Customer
+   -  User
+   -  Product
+   -  Order
 
 ### 2. controllers
    - Auth.LoginController
