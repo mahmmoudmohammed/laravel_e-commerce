@@ -1,4 +1,4 @@
-<p align="center"> ##LARAVEL E-Commerce project </p>
+<H1 align="center"> ##LARAVEL E-Commerce project </H1>
 
 
 
